@@ -1,0 +1,11 @@
+Questions for Meeting with Clowd With Django: 
+
+1. I will need to update my database periodically from an 3rd party API.  
+What are the steps to have this run periodically and automatically?  
+What are the pros and cons I should be considering on the frequency occurence of calling the API to update?
+Every 30 mins, 1hr, day, week? 
+
+2. Having the user upload a DID profile which NFTs are tied to it.
+WalletConnect can verify the ownership of DID.
+WalletConnect can grab all the NFTs owned by the DID
+Step 1 will create the database tracking NFTs by the DID 

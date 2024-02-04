@@ -2,4 +2,4 @@ from django.shortcuts import render
 
 
 def nft_gallery(request):
-    pass
+    return render(request, 'nftapp/nftgallery.html')

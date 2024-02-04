@@ -19,7 +19,7 @@
                     </div>
                 
                     <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
-                      <li><a href="" class="btn btn-ghost">NFTs</a></li>
+                      <li><a href="{% url 'nft_gallery' %}" class="btn btn-ghost">NFTs</a></li>
                       <li><a href="" class="btn btn-ghost">Tournaments</a></li>
                       <li><a href="" class="btn btn-ghost">Gameplay</a></li>
                       <li><a href="">Dashboard</a></li>
@@ -28,7 +28,7 @@
                 </div>      
                 <!-- Conditional statement nav bar of log in and log out based on user authentication status end -->
             {% else %}
-                <a href="" class="btn btn-ghost">NFTs</a>
+                <a href="{% url 'nft_gallery' %}" class="btn btn-ghost">NFTs</a>
                 <a href="" class="btn btn-ghost">Tournaments</a>
                 <a href="" class="btn btn-ghost">Gameplay</a>
                 <a href="" class="btn btn-ghost">Login</a>
@@ -76,7 +76,7 @@
                             </svg>
                         </div>
                         <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-                          <li><a href="">NFTs</a></li>
+                          <li><a href="{% url 'nft_gallery' %}">NFTs</a></li>
                           <li><a href="">Tournaments</a></li>
                           <li><a href="">Gameplay</a></li> 
                           <!-- Conditional statement nav bar of log in and log out based on user authentication status start -->
