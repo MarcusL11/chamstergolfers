@@ -23,9 +23,9 @@
               <div>
                 <p class="text-sm mx-4 mt-2">
                   <span class="font-medium">Page</span>
-                  <span class="font-medium"><-- page_number --></span>
+                  <span class="font-medium">{{ page_number }}</span>
                   <span class="font-medium">of </span>
-                  <span id="pageTotalValue" class="font-medium"><-- total_pages --></span>
+                  <span id="pageTotalValue" class="font-medium">{{ total_pages }}</span>
                 </p>
               </div>    
               <button id="nextButton" class="relative inline-flex items-center rounded-r-md px-2 py-2 ring-1 ring-inset ring-primary hover:bg-primary focus:z-20 focus:outline-offset-0">
@@ -41,7 +41,7 @@
       <h1 class="text-4xl font-bold tracking-tight">Chamster Golfers</h1>
       <!-- Sort button Start-->
       <div class="flex items-center">
-        <p class="hidden sm:flex sm:flex-1 sm:items-center sm:justify-end text-sm"><-- current_items --> of <-- all_items --> items</p>
+        <p class="hidden sm:flex sm:flex-1 sm:items-center sm:justify-end text-sm">{{ current_items }} of {{ all_items }} items</p>
         <div class="ml-4 relative inline-block text-left">
           <div>
             <button
@@ -212,21 +212,21 @@
                 id="filter-section-name"
                 style="display: none">
                 <div class="space-y-4">
-                  <-- for item in unique_name -->
+                  {% for item in unique_name %}
                   <div class="flex items-center">
                     <input
-                      id="filter-name-<-- forloop.counter -->"
+                      id="filter-name-{{ forloop.counter }}"
                       name="name[]"
-                      value="<-- item.name -->"
+                      value="{{ item.name }}"
                       type="checkbox"
                       class="h-4 w-4 rounded border-gray-300 text-secondary focus:ring-secondary" />
                     <label
-                      for="filter-name-<-- forloop.counter -->"
+                      for="filter-name-{{ forloop.counter }}"
                       class="ml-3 text-sm "
-                      ><-- item.name -->
+                      >{{ item.name }}
                     </label>
                   </div>
-                  <-- endfor -->
+                  {% endfor %}
                 </div>
               </div>
             </div>
@@ -277,21 +277,21 @@
                 id="filter-section-background"
                 style="display: none">
                 <div class="space-y-4">
-                  <-- for item in unique_background -->
+                  {% for item in unique_background %}
                   <div class="flex items-center">
                     <input
-                      id="filter-background-<-- forloop.counter -->"
+                      id="filter-background-{{ forloop.counter }}"
                       name="background[]"
-                      value="<-- item.background -->"
+                      value="{{ item.background }}"
                       type="checkbox"
                       class="h-4 w-4 rounded border-gray-300 text-secondary focus:ring-secondary" />
                     <label
-                      for="filter-background-<-- forloop.counter -->"
+                      for="filter-background-{{ forloop.counter }}"
                       class="ml-3 text-sm "
-                      ><-- item.background -->
+                      >{{ item.background }}
                     </label>
                   </div>
-                  <-- endfor -->
+                  {% endfor %}
                 </div>
               </div>
             </div>
@@ -339,21 +339,21 @@
               <!-- Filter section, show/hide based on section state. -->
               <div class="pt-6" id="filter-section-fur" style="display: none">
                 <div class="space-y-4">
-                  <-- for item in unique_fur -->
+                  {% for item in unique_fur %}
                   <div class="flex items-center">
                     <input
-                      id="filter-fur-<-- forloop.counter -->"
+                      id="filter-fur-{{ forloop.counter }}"
                       name="fur[]"
-                      value="<-- item.fur -->"
+                      value="{{ item.fur }}"
                       type="checkbox"
                       class="h-4 w-4 rounded border-gray-300 text-secondary focus:ring-secondary" />
                     <label
-                      for="filter-fur-<-- forloop.counter -->"
+                      for="filter-fur-{{ forloop.counter }}"
                       class="ml-3 text-sm ">
-                      <-- item.fur -->
+                      {{ item.fur }}
                     </label>
                   </div>
-                  <-- endfor -->
+                  {% endfor %}
                 </div>
               </div>
             </div>
@@ -404,21 +404,21 @@
                 id="filter-section-shirt"
                 style="display: none">
                 <div class="space-y-4">
-                  <-- for item in unique_shirt -->
+                  {% for item in unique_shirt %}
                   <div class="flex items-center">
                     <input
-                      id="filter-shirt-<-- forloop.counter -->"
+                      id="filter-shirt-{{ forloop.counter }}"
                       name="shirt[]"
-                      value="<-- item.shirt -->"
+                      value="{{ item.shirt }}"
                       type="checkbox"
                       class="h-4 w-4 rounded border-gray-300 text-secondary focus:ring-secondary" />
                     <label
-                      for="filter-shirt-<-- forloop.counter -->"
+                      for="filter-shirt-{{ forloop.counter }}"
                       class="ml-3 text-sm "
-                      ><-- item.shirt -->
+                      >{{ item.shirt }}
                     </label>
                   </div>
-                  <-- endfor -->
+                  {% endfor %}
                 </div>
               </div>
             </div>
@@ -469,21 +469,21 @@
                 id="filter-section-pants"
                 style="display: none">
                 <div class="space-y-4">
-                  <-- for item in unique_pants -->
+                  {% for item in unique_pants %}
                   <div class="flex items-center">
                     <input
-                      id="filter-pants-<-- forloop.counter -->"
+                      id="filter-pants-{{ forloop.counter }}"
                       name="pants[]"
-                      value="<-- item.pants -->"
+                      value="{{ item.pants }}"
                       type="checkbox"
                       class="h-4 w-4 rounded border-gray-300 text-secondary focus:ring-secondary" />
                     <label
-                      for="filter-pants-<-- forloop.counter -->"
+                      for="filter-pants-{{ forloop.counter }}"
                       class="ml-3 text-sm "
-                      ><-- item.pants -->
+                      >{{ item.pants }}
                     </label>
                   </div>
-                  <-- endfor -->
+                  {% endfor %}
                 </div>
               </div>
             </div>
@@ -534,21 +534,21 @@
                 id="filter-section-head"
                 style="display: none">
                 <div class="space-y-4">
-                  <-- for item in unique_head -->
+                  {% for item in unique_head %}
                   <div class="flex items-center">
                     <input
-                      id="filter-color-<-- forloop.counter -->"
+                      id="filter-color-{{ forloop.counter }}"
                       name="head[]"
-                      value="<-- item.head -->"
+                      value="{{ item.head }}"
                       type="checkbox"
                       class="h-4 w-4 rounded border-gray-300 text-secondary focus:ring-secondary" />
                     <label
-                      for="filter-head-<-- forloop.counter -->"
+                      for="filter-head-{{ forloop.counter }}"
                       class="ml-3 text-sm "
-                      ><-- item.head -->
+                      >{{ item.head }}
                     </label>
                   </div>
-                  <-- endfor -->
+                  {% endfor %}
                 </div>
               </div>
             </div>
@@ -599,21 +599,21 @@
                 id="filter-section-eyes"
                 style="display: none">
                 <div class="space-y-4">
-                  <-- for item in unique_eyes -->
+                  {% for item in unique_eyes %}
                   <div class="flex items-center">
                     <input
-                      id="filter-eyes-<-- forloop.counter -->"
+                      id="filter-eyes-{{ forloop.counter }}"
                       name="eyes[]"
-                      value="<-- item.eyes -->"
+                      value="{{ item.eyes }}"
                       type="checkbox"
                       class="h-4 w-4 rounded border-gray-300 text-secondary focus:ring-secondary" />
                     <label
-                      for="filter-eyes-<-- forloop.counter -->"
+                      for="filter-eyes-{{ forloop.counter }}"
                       class="ml-3 text-sm "
-                      ><-- item.eyes -->
+                      >{{ item.eyes }}
                     </label>
                   </div>
-                  <-- endfor -->
+                  {% endfor %}
                 </div>
               </div>
             </div>
@@ -664,21 +664,21 @@
                 id="filter-section-club"
                 style="display: none">
                 <div class="space-y-4">
-                  <-- for item in unique_club -->
+                  {% for item in unique_club %}
                   <div class="flex items-center">
                     <input
-                      id="filter-club-<-- forloop.counter -->"
+                      id="filter-club-{{ forloop.counter }}"
                       name="club[]"
-                      value="<-- item.club -->"
+                      value="{{ item.club }}"
                       type="checkbox"
                       class="h-4 w-4 rounded border-gray-300 text-secondary focus:ring-secondary" />
                     <label
-                      for="filter-club-<-- forloop.counter -->"
+                      for="filter-club-{{ forloop.counter }}"
                       class="ml-3 text-sm "
-                      ><-- item.club -->
+                      >{{ item.club }}
                     </label>
                   </div>
-                  <-- endfor -->
+                  {% endfor %}
                 </div>
               </div>
             </div>
@@ -733,21 +733,21 @@
                 id="filter-section-power"
                 style="display: none">
                 <div class="space-y-4">
-                  <-- for item in unique_power -->
+                  {% for item in unique_power %}
                   <div class="flex items-center">
                     <input
-                      id="filter-power-<-- forloop.counter -->"
+                      id="filter-power-{{ forloop.counter }}"
                       name="power[]"
-                      value="<-- item.power -->"
+                      value="{{ item.power }}"
                       type="checkbox"
                       class="h-4 w-4 rounded border-gray-300 text-secondary focus:ring-secondary" />
                     <label
-                      for="filter-power-<-- forloop.counter -->"
+                      for="filter-power-{{ forloop.counter }}"
                       class="ml-3 text-sm "
-                      ><-- item.power -->
+                      >{{ item.power }}
                     </label>
                   </div>
-                  <-- endfor -->
+                  {% endfor %}
                 </div>
               </div>
             </div>
@@ -798,21 +798,21 @@
                 id="filter-section-putting"
                 style="display: none">
                 <div class="space-y-4">
-                  <-- for item in unique_putting -->
+                  {% for item in unique_putting %}
                   <div class="flex items-center">
                     <input
-                      id="filter-putting-<-- forloop.counter -->"
+                      id="filter-putting-{{ forloop.counter }}"
                       name="putting[]"
-                      value="<-- item.putting -->"
+                      value="{{ item.putting }}"
                       type="checkbox"
                       class="h-4 w-4 rounded border-gray-300 text-secondary focus:ring-seondary" />
                     <label
-                      for="filter-putting-<-- forloop.counter -->"
+                      for="filter-putting-{{ forloop.counter }}"
                       class="ml-3 text-sm "
-                      ><-- item.putting -->
+                      >{{ item.putting }}
                     </label>
                   </div>
-                  <-- endfor -->
+                  {% endfor %}
                 </div>
               </div>
             </div>
@@ -863,21 +863,21 @@
                 id="filter-section-accuracy"
                 style="display: none">
                 <div class="space-y-4">
-                  <-- for item in unique_accuracy -->
+                  {% for item in unique_accuracy %}
                   <div class="flex items-center">
                     <input
-                      id="filter-accuracy-<-- forloop.counter -->"
+                      id="filter-accuracy-{{ forloop.counter }}"
                       name="accuracy[]"
-                      value="<-- item.accuracy -->"
+                      value="{{ item.accuracy }}"
                       type="checkbox"
                       class="h-4 w-4 rounded border-gray-300 text-secondary focus:secondary" />
                     <label
-                      for="filter-accuracy-<-- forloop.counter -->"
+                      for="filter-accuracy-{{ forloop.counter }}"
                       class="ml-3 text-sm "
-                      ><-- item.accuracy -->
+                      >{{ item.accuracy }}
                     </label>
                   </div>
-                  <-- endfor -->
+                  {% endfor %}
                 </div>
               </div>
             </div>
@@ -928,21 +928,21 @@
                 id="filter-section-luck"
                 style="display: none">
                 <div class="space-y-4">
-                  <-- for item in unique_luck -->
+                  {% for item in unique_luck %}
                   <div class="flex items-center">
                     <input
-                      id="filter-luck-<-- forloop.counter -->"
+                      id="filter-luck-{{ forloop.counter }}"
                       name="luck[]"
-                      value="<-- item.luck -->"
+                      value="{{ item.luck }}"
                       type="checkbox"
                       class="h-4 w-4 rounded border-gray-300 text-secondary focus:ring-secondary" />
                     <label
-                      for="filter-luck-<-- forloop.counter -->"
+                      for="filter-luck-{{ forloop.counter }}"
                       class="ml-3 text-sm "
-                      ><-- item.luck -->
+                      >{{ item.luck }}
                     </label>
                   </div>
-                  <-- endfor -->
+                  {% endfor %}
                 </div>
               </div>
             </div>
@@ -993,21 +993,21 @@
                 id="filter-section-recovery"
                 style="display: none">
                 <div class="space-y-4">
-                  <-- for item in unique_recovery -->
+                  {% for item in unique_recovery %}
                   <div class="flex items-center">
                     <input
-                      id="filter-recovery-<-- forloop.counter -->"
+                      id="filter-recovery-{{ forloop.counter }}"
                       name="recovery[]"
-                      value="<-- item.recovery -->"
+                      value="{{ item.recovery }}"
                       type="checkbox"
                       class="h-4 w-4 rounded border-gray-300 text-secondary focus:ring-secondary" />
                     <label
-                      for="filter-recovery-<-- forloop.counter -->"
+                      for="filter-recovery-{{ forloop.counter }}"
                       class="ml-3 text-sm "
-                      ><-- item.recovery -->
+                      >{{ item.recovery }}
                     </label>
                   </div>
-                  <-- endfor -->
+                  {% endfor %}
                 </div>
               </div>
             </div>
@@ -1058,21 +1058,21 @@
                 id="filter-section-specialty"
                 style="display: None">
                 <div class="space-y-4">
-                  <-- for item in unique_specialty -->
+                  {% for item in unique_specialty %}
                   <div class="flex items-center">
                     <input
-                      id="filter-specialty-<-- forloop.counter -->"
+                      id="filter-specialty-{{ forloop.counter }}"
                       name="specialty[]"
-                      value="<-- item.specialty -->"
+                      value="{{ item.specialty }}"
                       type="checkbox"
                       class="h-4 w-4 rounded border-gray-300 text-secondary focus:ring-secondary" />
                     <label
-                      for="filter-specialty-<-- forloop.counter -->"
+                      for="filter-specialty-{{ forloop.counter }}"
                       class="ml-3 text-sm "
-                      ><-- item.specialty -->
+                      >{{ item.specialty }}
                     </label>
                   </div>
-                  <-- endfor -->
+                  {% endfor %}
                 </div>
               </div>
             </div>
@@ -1086,26 +1086,26 @@
           <!--NFT Card Section start -->
           <div class="items-container">
             <div class="grid grid-cols-1 gap-x-4 gap-y-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-6">
-              <-- for item in chamster -->
+              {% for item in chamster %}
               <div class="group relative">
                 <!-- Grid Section - Starts Here -->
                 <section id="Projects" class="justify-items-center justify-center mt-4">
                   <div class="shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
-                    <a href="<-- url 'nftProfile' pk=item.id -->">
-                      <img src="<-- static 'chamsterapp/img/nft/golfers/'|add:item.encoded_id|add:'.png' -->" alt="<--item.name-->" class="object-cover rounded-t-xl" />
+                    <a href="">
+                      <img src="{% static 'images/nft/golfers/'|add:item.encoded_id|add:'.png' %}" alt="{{item.name}}" class="object-cover rounded-t-xl" />
                       <div class="px-4 py-2">
-                        <-- if "Chamster Legendary Golfer #" in item.name -->
-                        <p class="font-bold">Chamster <-- item.name|slice:"26:" --></p>
-                        <-- else -->
-                        <p class="font-bold">Chamster <-- item.name|slice:"15:" --></p>
-                        <-- endif -->
+                        {% if "Chamster Legendary Golfer #" in item.name %}
+                        <p class="font-bold no-underline">Chamster {{ item.name|slice:"26:" }}</p>
+                        {% else %}
+                        <p class="font-bold no-underline">Chamster {{ item.name|slice:"15:" }}</p>
+                        {% endif %}
                         <div class="flex items-center">
-                          <p class="font-semibold cursor-auto">TSI: </p>
-                          <p class="mx-2"><-- item.tsi --></p>
+                          <p class="font-semibold cursor-auto no-underline">TSI: </p>
+                          <p class="mx-2 no-underline">{{ item.tsi }}</p>
                         </div>
                         <div class="flex items-center">
-                          <p class="font-semibold cursor-auto">Specialty: </p>
-                          <-- if "Birdie Seeker" in item.specialty -->
+                          <p class="font-semibold cursor-auto no-underline">Specialty: </p>
+                          {% if "Birdie Seeker" in item.specialty %}
                             <div class="ml-2">
                               <svg
                                 width="20px"
@@ -1153,7 +1153,7 @@
                                 </g>
                               </svg>                              
                             </div>
-                          <-- elif "Bunker King" in item.specialty -->
+                          {% elif "Bunker King" in item.specialty %}
                             <div class="ml-2">
                               <svg
                                 fill="#3aac57"
@@ -1194,7 +1194,7 @@
                                 </g>
                               </svg>                          
                             </div>
-                          <-- elif "Zoomie" in item.specialty -->
+                          {% elif "Zoomie" in item.specialty %}
                             <div class="ml-2">
                               <svg
                                 width="25px"
@@ -1214,7 +1214,7 @@
                                 </g>
                               </svg>                         
                             </div>  
-                          <-- elif "Fairway Finder" in item.specialty -->
+                          {% elif "Fairway Finder" in item.specialty %}
                             <div class="ml-2">
                               <svg
                                 fill="#3aac57"
@@ -1262,7 +1262,7 @@
                                 </g>
                               </svg>                         
                             </div>   
-                          <-- elif "Windcheater" in item.specialty -->
+                          {% elif "Windcheater" in item.specialty %}
                             <div class="ml-2">
                               <svg
                                 width="25px"
@@ -1285,7 +1285,7 @@
                                 </g>
                               </svg>                     
                             </div>                                                                                                      
-                          <-- endif -->
+                          {% endif %}
                         </div>
                       </div>
                     </a>
@@ -1293,7 +1293,7 @@
                 </section>
               </div>              
               <!-- NFT card - Ends Here  -->
-              <-- endfor -->              
+              {% endfor %}              
             </div>
           </div>
           <!--NFT Card Section end -->
@@ -1303,5 +1303,4 @@
   </main>
 </div>
 <script src="{% static 'js/nftgallery.js' %}"></script>
-
 {% endblock body %}

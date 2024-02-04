@@ -2596,10 +2596,6 @@ a:hover {
   width: 100%;
 }
 
-.max-w-7xl {
-  max-width: 80rem;
-}
-
 .flex-1 {
   flex: 1 1 0%;
 }
@@ -2913,6 +2909,10 @@ a:hover {
   color: var(--fallback-s,oklch(var(--s)/var(--tw-text-opacity)));
 }
 
+.no-underline {
+  text-decoration-line: none;
+}
+
 .opacity-75 {
   opacity: 0.75;
 }
@@ -3079,11 +3079,6 @@ a:hover {
     padding-left: 0.5rem;
     padding-right: 0.5rem;
   }
-
-  .sm\:px-6 {
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
-  }
 }
 
 @media (min-width: 768px) {
@@ -3111,11 +3106,6 @@ a:hover {
 
   .lg\:grid-cols-4 {
     grid-template-columns: repeat(4, minmax(0, 1fr));
-  }
-
-  .lg\:px-8 {
-    padding-left: 2rem;
-    padding-right: 2rem;
   }
 
   .lg\:text-left {
