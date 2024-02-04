@@ -27,6 +27,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'tailwind',
     'theme',
+    'homeapp',
+    'nftapp',
 ]
 
 TAILWIND_APP_NAME = 'theme'
