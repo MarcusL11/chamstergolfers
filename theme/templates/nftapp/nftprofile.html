@@ -1,9 +1,9 @@
 {% extends "../base.html" %} 
 {% load static %} 
 {% block body %}
-<main class="container">
+<main class="container pt-20">
   <section class="nft-prof-nav">
-    <div class="w-layout-blockcontainer container w-container">
+    <div class="">
       <div class="nft-profile-link-block">
         <a href="{% url "nft_gallery" %}" class="link-3 hover:text-primary">NFT Golfers / </a>
         <a href="#" class="link-3">{{nft_profile.name}}</a>
@@ -12,8 +12,8 @@
   </section>
   <!-- Tailwind Product Page testing -->
   <div class="py-8">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex flex-col md:flex-row -mx-4 mb-4">
+    <div class="max-w-6xl mx-auto">
+      <div class="flex flex-col lg:flex-row -mx-4 mb-4">
         <!-- Left Column NFT Picture -->
         <div class="md:flex-1 px-4">
           <img class=" shadow-xl w-auto h-auto object-contain rounded-lg" src="{% static "images/nft/golfers/"|add:nft_profile.encoded_id|add:".png" %}" alt="Chamster Profile Image">
@@ -157,7 +157,7 @@
                 <span class="text-end text-ellipsis overflow-hidden ...">{{ chamster_type }}</span>
               </div>              
               <div class="grid grid-cols-2">
-                <span class="font-bold text-gray-700 dark:text-gray-300">NFT ID: </span>
+                <span class="font-bold">NFT ID: </span>
                 <div class="flex items-center space-x-2">
                   <span class="text-end text-ellipsis overflow-hidden ...">{{ nft_profile.encoded_id }}</span>
                   <div class="copy-icon cursor-pointer" onclick="copyNft()">
@@ -192,7 +192,7 @@
                 </div>
               </div>
               <div class="grid grid-cols-2">
-                <span class="font-bold text-gray-700 dark:text-gray-300">Owner Addres: </span>
+                <span class="font-bold">Owner Addres: </span>
                 <div class="flex items-center space-x-2">
                   <span class="text-end text-ellipsis overflow-hidden ...">{{ owner_address }}</span>
                   <div class="copy-icon cursor-pointer" onclick="copyAddress()">
@@ -231,11 +231,11 @@
                 <span class="text-end text-ellipsis overflow-hidden ...">{{ owner_did }}</span>
               </div>
               <div class="grid grid-cols-2">
-                <span class="font-bold text-gray-700 dark:text-gray-300">Tournament Win Rate: </span>
+                <span class="font-bold">Tournament Win Rate: </span>
                 <span class="text-end text-ellipsis overflow-hidden ..."> N/A</span>
               </div>
               <div class="grid grid-cols-2">
-                <span class="font-bold text-gray-700 dark:text-gray-300">Tournament Earnings: </span>
+                <span class="font-bold">Tournament Earnings: </span>
                 <span class="text-end text-ellipsis overflow-hidden ..."> N/A</span>
               </div>                            
             </div>

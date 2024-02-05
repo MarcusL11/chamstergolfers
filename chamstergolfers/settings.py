@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     'homeapp',
     'nftapp',
     'chartjs',
+    'dashboardapp',
 ]
 
 TAILWIND_APP_NAME = 'theme'

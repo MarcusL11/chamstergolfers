@@ -1,11 +1,14 @@
 Questions for Meeting with Clowd With Django: 
 
-1. I will need to update my database periodically from an 3rd party API.  
+1. I will need to update my database periodically from a 3rd party API.  
 What are the steps to have this run periodically and automatically?  
 What are the pros and cons I should be considering on the frequency occurence of calling the API to update?
 Every 30 mins, 1hr, day, week? 
 
-2. Having the user upload a DID profile which NFTs are tied to it.
-WalletConnect can verify the ownership of DID.
-WalletConnect can grab all the NFTs owned by the DID
-Step 1 will create the database tracking NFTs by the DID 
+2. User to login with their WalletConnect.  The User will connect their Chia Wallet via WalletConnect, 
+then the user will input their DID Profile to request a signature, WalletConnect sends a signature request to the DID profile, 
+the user signs, and the authentication is complete. This process has been coded already, but how would I 
+create a profile for the user in this session? Will I still be using the builtin User Database to create the user for them and sign in?
+How about the password? 
+
+3. 
