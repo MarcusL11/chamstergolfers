@@ -1,0 +1,500 @@
+{% extends "../base.html" %} 
+{% load static %} 
+{% block body %}
+<main class="container">
+  <section class="nft-prof-nav">
+    <div class="w-layout-blockcontainer container w-container">
+      <div class="nft-profile-link-block">
+        <a href="{% url "nft_gallery" %}" class="link-3 hover:text-primary">NFT Golfers / </a>
+        <a href="#" class="link-3">{{nft_profile.name}}</a>
+      </div>
+    </div>
+  </section>
+  <!-- Tailwind Product Page testing -->
+  <div class="py-8">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row -mx-4 mb-4">
+        <!-- Left Column NFT Picture -->
+        <div class="md:flex-1 px-4">
+          <img class=" shadow-xl w-auto h-auto object-contain rounded-lg" src="{% static "images/nft/golfers/"|add:nft_profile.encoded_id|add:".png" %}" alt="Chamster Profile Image">
+          <!-- Price Listing and Action Table -->
+          <div class="shadow-xl rounded-lg overflow-x-auto">
+            <table class="table mt-2 w-full sm:table-auto">
+              <!-- head -->
+              <thead class="text-lg">
+                <tr>
+                  <th class="pr-16">Price</th>
+                  <th class="pl-20 pr-12">Active Since</th>
+                  <th class="pl-20">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- row 1 -->
+                {% if xch_price is not None %}
+                <tr>
+                  <td class="flex  mt-4"> 
+                      <img class="w-6 h-4" src ="{% static "images/chia_icon/chia_icon_green_w96px.png" %}" alt="Chia Leaf">
+                      <div class="flex pl-2 mr-20">
+                        <span class="mr-2">{{ xch_price }}</span>
+                        <span>(${{ usdsc_price|floatformat:2 }})</span>
+                      </div>
+                    </td>
+                    <td class="flex-1 pl-20">4 months ago</td>
+                    <td class="flex-1">
+                      <div class="flex pl-10">
+                        <!-- Wallet Connect Icon -->
+                        <button class="btn btn-ghost btn-circle wallet-connect">
+                          <svg
+                            class="h-8 w-8 wallet-connect-icon"
+                            fill="none"
+                            height="200"
+                            viewBox="0 0 480 332"
+                            width="200"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                              class="wallet-connnect-icon-path"
+                              d="m126.613 93.9842c62.622-61.3123 164.152-61.3123 226.775 0l7.536 7.3788c3.131 3.066 3.131 8.036 0 11.102l-25.781 25.242c-1.566 1.533-4.104 1.533-5.67 0l-10.371-10.154c-43.687-42.7734-114.517-42.7734-158.204 0l-11.107 10.874c-1.565 1.533-4.103 1.533-5.669 0l-25.781-25.242c-3.132-3.066-3.132-8.036 0-11.102zm280.093 52.2038 22.946 22.465c3.131 3.066 3.131 8.036 0 11.102l-103.463 101.301c-3.131 3.065-8.208 3.065-11.339 0l-73.432-71.896c-.783-.767-2.052-.767-2.835 0l-73.43 71.896c-3.131 3.065-8.208 3.065-11.339 0l-103.4657-101.302c-3.1311-3.066-3.1311-8.036 0-11.102l22.9456-22.466c3.1311-3.065 8.2077-3.065 11.3388 0l73.4333 71.897c.782.767 2.051.767 2.834 0l73.429-71.897c3.131-3.065 8.208-3.065 11.339 0l73.433 71.897c.783.767 2.052.767 2.835 0l73.431-71.895c3.132-3.066 8.208-3.066 11.339 0z" />
+                          </svg>
+                        </button>
+                        <!--Copy Icon-->
+                        <div class="copy-icon cursor-pointer btn btn-ghost btn-circle" onclick="copyOffer()">
+                          <svg fill="#000000" height="20px" width="20px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 64 64" enable-background="new 0 0 64 64" xml:space="preserve">
+                            <g id="Text-files">
+                              <path d="M53.9791489,9.1429005H50.010849c-0.0826988,0-0.1562004,0.0283995-0.2331009,0.0469999V5.0228
+                                C49.7777481,2.253,47.4731483,0,44.6398468,0h-34.422596C7.3839517,0,5.0793519,2.253,5.0793519,5.0228v46.8432999
+                                c0,2.7697983,2.3045998,5.0228004,5.1378999,5.0228004h6.0367002v2.2678986C16.253952,61.8274002,18.4702511,64,21.1954517,64
+                                h32.783699c2.7252007,0,4.9414978-2.1725998,4.9414978-4.8432007V13.9861002
+                                C58.9206467,11.3155003,56.7043495,9.1429005,53.9791489,9.1429005z M7.1110516,51.8661003V5.0228
+                                c0-1.6487999,1.3938999-2.9909999,3.1062002-2.9909999h34.422596c1.7123032,0,3.1062012,1.3422,3.1062012,2.9909999v46.8432999
+                                c0,1.6487999-1.393898,2.9911003-3.1062012,2.9911003h-34.422596C8.5049515,54.8572006,7.1110516,53.5149002,7.1110516,51.8661003z
+                                  M56.8888474,59.1567993c0,1.550602-1.3055,2.8115005-2.9096985,2.8115005h-32.783699
+                                c-1.6042004,0-2.9097996-1.2608986-2.9097996-2.8115005v-2.2678986h26.3541946
+                                c2.8333015,0,5.1379013-2.2530022,5.1379013-5.0228004V11.1275997c0.0769005,0.0186005,0.1504021,0.0469999,0.2331009,0.0469999
+                                h3.9682999c1.6041985,0,2.9096985,1.2609005,2.9096985,2.8115005V59.1567993z"/>
+                              <path d="M38.6031494,13.2063999H16.253952c-0.5615005,0-1.0159006,0.4542999-1.0159006,1.0158005
+                                c0,0.5615997,0.4544001,1.0158997,1.0159006,1.0158997h22.3491974c0.5615005,0,1.0158997-0.4542999,1.0158997-1.0158997
+                                C39.6190491,13.6606998,39.16465,13.2063999,38.6031494,13.2063999z"/>
+                              <path d="M38.6031494,21.3334007H16.253952c-0.5615005,0-1.0159006,0.4542999-1.0159006,1.0157986
+                                c0,0.5615005,0.4544001,1.0159016,1.0159006,1.0159016h22.3491974c0.5615005,0,1.0158997-0.454401,1.0158997-1.0159016
+                                C39.6190491,21.7877007,39.16465,21.3334007,38.6031494,21.3334007z"/>
+                              <path d="M38.6031494,29.4603004H16.253952c-0.5615005,0-1.0159006,0.4543991-1.0159006,1.0158997
+                                s0.4544001,1.0158997,1.0159006,1.0158997h22.3491974c0.5615005,0,1.0158997-0.4543991,1.0158997-1.0158997
+                                S39.16465,29.4603004,38.6031494,29.4603004z"/>
+                              <path d="M28.4444485,37.5872993H16.253952c-0.5615005,0-1.0159006,0.4543991-1.0159006,1.0158997
+                                s0.4544001,1.0158997,1.0159006,1.0158997h12.1904964c0.5615025,0,1.0158005-0.4543991,1.0158005-1.0158997
+                                S29.0059509,37.5872993,28.4444485,37.5872993z"/>
+                            </g>
+                          </svg>
+                        </div>
+                        <!-- Download Icon-->
+                        <div class="copy-icon cursor-pointer btn btn-ghost btn-circle" onclick="">  
+                          <svg width="24px" height="24px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+                            <!-- Generator: Sketch 3.0.3 (7891) - http://www.bohemiancoding.com/sketch -->
+                            <title>icon 57 document download</title>
+                            <desc>Created with Sketch.</desc>
+                            <defs></defs>
+                            <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+                              <g id="icon-57-document-download" sketch:type="MSArtboardGroup" fill="#000000">
+                                  <path d="M16,25.049999 L12.75,21.799999 L12,22.549999 L16.5,27.049999 L21,22.549999 L20.25,21.799999 L17,25.049999 L17,14 L16,14 L16,25.049999 L16,25.049999 Z M19.5,3 L9.00276013,3 C7.89666625,3 7,3.89833832 7,5.00732994 L7,27.9926701 C7,29.1012878 7.89092539,30 8.99742191,30 L24.0025781,30 C25.1057238,30 26,29.1017876 26,28.0092049 L26,10.5 L26,10 L20,3 L19.5,3 L19.5,3 L19.5,3 Z M19,4 L8.9955775,4 C8.44573523,4 8,4.45526288 8,4.99545703 L8,28.004543 C8,28.5543187 8.45470893,29 8.9999602,29 L24.0000398,29 C24.5523026,29 25,28.5550537 25,28.0066023 L25,11 L20.9979131,11 C19.8944962,11 19,10.1134452 19,8.99408095 L19,4 L19,4 Z M20,4.5 L20,8.99121523 C20,9.54835167 20.4506511,10 20.9967388,10 L24.6999512,10 L20,4.5 L20,4.5 Z" id="document-download" sketch:type="MSShapeGroup"></path>
+                              </g>
+                            </g>
+                          </svg>                        
+                        </div>                    
+                      </div>
+                    </td>
+                  </tr> 
+                    {% else %}
+                    <tr>
+                      <td class="flex  mt-4"> 
+                          <img class="w-6 h-4" src ="{% static "images/chia_icon/chia_icon_green_w96px.png" %}" alt="Chia Leaf">
+                          <div class="flex pl-2 mr-20">
+                            <span class="mr-2"></span>
+                          </div>
+                        </td>
+                        <td class="flex-1 pl-20"></td>
+                        <td class="flex-1">
+                          <div class="flex pl-10">
+                            <p class="mt-2 pr-2 text-l font-bold">Send Offer</p>
+                            <!-- Wallet Connect Icon -->
+                            <button class="btn btn-ghost btn-circle wallet-connect">
+                              <svg
+                                class="h-8 w-8 wallet-connect-icon"
+                                fill="none"
+                                height="200"
+                                viewBox="0 0 480 332"
+                                width="200"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                  class="wallet-connnect-icon-path"
+                                  d="m126.613 93.9842c62.622-61.3123 164.152-61.3123 226.775 0l7.536 7.3788c3.131 3.066 3.131 8.036 0 11.102l-25.781 25.242c-1.566 1.533-4.104 1.533-5.67 0l-10.371-10.154c-43.687-42.7734-114.517-42.7734-158.204 0l-11.107 10.874c-1.565 1.533-4.103 1.533-5.669 0l-25.781-25.242c-3.132-3.066-3.132-8.036 0-11.102zm280.093 52.2038 22.946 22.465c3.131 3.066 3.131 8.036 0 11.102l-103.463 101.301c-3.131 3.065-8.208 3.065-11.339 0l-73.432-71.896c-.783-.767-2.052-.767-2.835 0l-73.43 71.896c-3.131 3.065-8.208 3.065-11.339 0l-103.4657-101.302c-3.1311-3.066-3.1311-8.036 0-11.102l22.9456-22.466c3.1311-3.065 8.2077-3.065 11.3388 0l73.4333 71.897c.782.767 2.051.767 2.834 0l73.429-71.897c3.131-3.065 8.208-3.065 11.339 0l73.433 71.897c.783.767 2.052.767 2.835 0l73.431-71.895c3.132-3.066 8.208-3.066 11.339 0z" />
+                              </svg>
+                            </button>
+                          </div>
+                        </td>
+                      </tr>                     
+                    {% endif %}
+              </tbody>
+            </table>
+          </div>  
+
+        </div>
+        <!-- Right Column NFT Profile -->
+        <div class="md:flex-1 px-4">
+          <div class="bg-transparent rounded-lg p-4 shadow-xl ">
+            <h2 class="text-2xl font-bold text-gray-800 mb-2">{{nft_profile.name}}</h2>
+            <div class="justify-between">
+              <div class="grid grid-cols-1 item-center justify-center">
+                <!-- ChartJS Insert Start -->
+                <canvas id="myChart"></canvas>
+                <!-- ChartJS Insert End-->
+              </div>              
+              <div class="grid grid-cols-2">
+                <span class="font-bold">Series: </span>
+                <span class="text-end text-ellipsis overflow-hidden ...">{{ collection_name }}</span>
+              </div>
+              <div class="grid grid-cols-2">
+                <span class="font-bold">Type: </span>
+                <span class="text-end text-ellipsis overflow-hidden ...">{{ chamster_type }}</span>
+              </div>              
+              <div class="grid grid-cols-2">
+                <span class="font-bold text-gray-700 dark:text-gray-300">NFT ID: </span>
+                <div class="flex items-center space-x-2">
+                  <span class="text-end text-ellipsis overflow-hidden ...">{{ nft_profile.encoded_id }}</span>
+                  <div class="copy-icon cursor-pointer" onclick="copyNft()">
+                    <svg fill="#000000" height="20px" width="20px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 64 64" enable-background="new 0 0 64 64" xml:space="preserve">
+                      <g id="Text-files">
+                        <path d="M53.9791489,9.1429005H50.010849c-0.0826988,0-0.1562004,0.0283995-0.2331009,0.0469999V5.0228
+                          C49.7777481,2.253,47.4731483,0,44.6398468,0h-34.422596C7.3839517,0,5.0793519,2.253,5.0793519,5.0228v46.8432999
+                          c0,2.7697983,2.3045998,5.0228004,5.1378999,5.0228004h6.0367002v2.2678986C16.253952,61.8274002,18.4702511,64,21.1954517,64
+                          h32.783699c2.7252007,0,4.9414978-2.1725998,4.9414978-4.8432007V13.9861002
+                          C58.9206467,11.3155003,56.7043495,9.1429005,53.9791489,9.1429005z M7.1110516,51.8661003V5.0228
+                          c0-1.6487999,1.3938999-2.9909999,3.1062002-2.9909999h34.422596c1.7123032,0,3.1062012,1.3422,3.1062012,2.9909999v46.8432999
+                          c0,1.6487999-1.393898,2.9911003-3.1062012,2.9911003h-34.422596C8.5049515,54.8572006,7.1110516,53.5149002,7.1110516,51.8661003z
+                            M56.8888474,59.1567993c0,1.550602-1.3055,2.8115005-2.9096985,2.8115005h-32.783699
+                          c-1.6042004,0-2.9097996-1.2608986-2.9097996-2.8115005v-2.2678986h26.3541946
+                          c2.8333015,0,5.1379013-2.2530022,5.1379013-5.0228004V11.1275997c0.0769005,0.0186005,0.1504021,0.0469999,0.2331009,0.0469999
+                          h3.9682999c1.6041985,0,2.9096985,1.2609005,2.9096985,2.8115005V59.1567993z"/>
+                        <path d="M38.6031494,13.2063999H16.253952c-0.5615005,0-1.0159006,0.4542999-1.0159006,1.0158005
+                          c0,0.5615997,0.4544001,1.0158997,1.0159006,1.0158997h22.3491974c0.5615005,0,1.0158997-0.4542999,1.0158997-1.0158997
+                          C39.6190491,13.6606998,39.16465,13.2063999,38.6031494,13.2063999z"/>
+                        <path d="M38.6031494,21.3334007H16.253952c-0.5615005,0-1.0159006,0.4542999-1.0159006,1.0157986
+                          c0,0.5615005,0.4544001,1.0159016,1.0159006,1.0159016h22.3491974c0.5615005,0,1.0158997-0.454401,1.0158997-1.0159016
+                          C39.6190491,21.7877007,39.16465,21.3334007,38.6031494,21.3334007z"/>
+                        <path d="M38.6031494,29.4603004H16.253952c-0.5615005,0-1.0159006,0.4543991-1.0159006,1.0158997
+                          s0.4544001,1.0158997,1.0159006,1.0158997h22.3491974c0.5615005,0,1.0158997-0.4543991,1.0158997-1.0158997
+                          S39.16465,29.4603004,38.6031494,29.4603004z"/>
+                        <path d="M28.4444485,37.5872993H16.253952c-0.5615005,0-1.0159006,0.4543991-1.0159006,1.0158997
+                          s0.4544001,1.0158997,1.0159006,1.0158997h12.1904964c0.5615025,0,1.0158005-0.4543991,1.0158005-1.0158997
+                          S29.0059509,37.5872993,28.4444485,37.5872993z"/>
+                      </g>
+                    </svg>
+                  </div>                  
+                </div>
+              </div>
+              <div class="grid grid-cols-2">
+                <span class="font-bold text-gray-700 dark:text-gray-300">Owner Addres: </span>
+                <div class="flex items-center space-x-2">
+                  <span class="text-end text-ellipsis overflow-hidden ...">{{ owner_address }}</span>
+                  <div class="copy-icon cursor-pointer" onclick="copyAddress()">
+                    <svg fill="#000000" height="20px" width="20px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 64 64" enable-background="new 0 0 64 64" xml:space="preserve">
+                      <g id="Text-files">
+                        <path d="M53.9791489,9.1429005H50.010849c-0.0826988,0-0.1562004,0.0283995-0.2331009,0.0469999V5.0228
+                          C49.7777481,2.253,47.4731483,0,44.6398468,0h-34.422596C7.3839517,0,5.0793519,2.253,5.0793519,5.0228v46.8432999
+                          c0,2.7697983,2.3045998,5.0228004,5.1378999,5.0228004h6.0367002v2.2678986C16.253952,61.8274002,18.4702511,64,21.1954517,64
+                          h32.783699c2.7252007,0,4.9414978-2.1725998,4.9414978-4.8432007V13.9861002
+                          C58.9206467,11.3155003,56.7043495,9.1429005,53.9791489,9.1429005z M7.1110516,51.8661003V5.0228
+                          c0-1.6487999,1.3938999-2.9909999,3.1062002-2.9909999h34.422596c1.7123032,0,3.1062012,1.3422,3.1062012,2.9909999v46.8432999
+                          c0,1.6487999-1.393898,2.9911003-3.1062012,2.9911003h-34.422596C8.5049515,54.8572006,7.1110516,53.5149002,7.1110516,51.8661003z
+                            M56.8888474,59.1567993c0,1.550602-1.3055,2.8115005-2.9096985,2.8115005h-32.783699
+                          c-1.6042004,0-2.9097996-1.2608986-2.9097996-2.8115005v-2.2678986h26.3541946
+                          c2.8333015,0,5.1379013-2.2530022,5.1379013-5.0228004V11.1275997c0.0769005,0.0186005,0.1504021,0.0469999,0.2331009,0.0469999
+                          h3.9682999c1.6041985,0,2.9096985,1.2609005,2.9096985,2.8115005V59.1567993z"/>
+                        <path d="M38.6031494,13.2063999H16.253952c-0.5615005,0-1.0159006,0.4542999-1.0159006,1.0158005
+                          c0,0.5615997,0.4544001,1.0158997,1.0159006,1.0158997h22.3491974c0.5615005,0,1.0158997-0.4542999,1.0158997-1.0158997
+                          C39.6190491,13.6606998,39.16465,13.2063999,38.6031494,13.2063999z"/>
+                        <path d="M38.6031494,21.3334007H16.253952c-0.5615005,0-1.0159006,0.4542999-1.0159006,1.0157986
+                          c0,0.5615005,0.4544001,1.0159016,1.0159006,1.0159016h22.3491974c0.5615005,0,1.0158997-0.454401,1.0158997-1.0159016
+                          C39.6190491,21.7877007,39.16465,21.3334007,38.6031494,21.3334007z"/>
+                        <path d="M38.6031494,29.4603004H16.253952c-0.5615005,0-1.0159006,0.4543991-1.0159006,1.0158997
+                          s0.4544001,1.0158997,1.0159006,1.0158997h22.3491974c0.5615005,0,1.0158997-0.4543991,1.0158997-1.0158997
+                          S39.16465,29.4603004,38.6031494,29.4603004z"/>
+                        <path d="M28.4444485,37.5872993H16.253952c-0.5615005,0-1.0159006,0.4543991-1.0159006,1.0158997
+                          s0.4544001,1.0158997,1.0159006,1.0158997h12.1904964c0.5615025,0,1.0158005-0.4543991,1.0158005-1.0158997
+                          S29.0059509,37.5872993,28.4444485,37.5872993z"/>
+                      </g>
+                    </svg>
+                  </div>
+                </div>
+              </div>
+              <div class="grid grid-cols-2">
+                <span class="font-bold">Owner DID: </span>
+                <span class="text-end text-ellipsis overflow-hidden ...">{{ owner_did }}</span>
+              </div>
+              <div class="grid grid-cols-2">
+                <span class="font-bold text-gray-700 dark:text-gray-300">Tournament Win Rate: </span>
+                <span class="text-end text-ellipsis overflow-hidden ..."> N/A</span>
+              </div>
+              <div class="grid grid-cols-2">
+                <span class="font-bold text-gray-700 dark:text-gray-300">Tournament Earnings: </span>
+                <span class="text-end text-ellipsis overflow-hidden ..."> N/A</span>
+              </div>                            
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--Tabs-->
+      <section>
+        <!--Equipment Tab Start 1-->    
+        <div role="tablist" class="tabs tabs-lifted">
+          <input type="radio" name="my_tabs_2" role="tab" class="tab" aria-label="Equipment" checked/>
+          <div role="tabpanel" class="tab-content rounded-box shadow-xl p-2">
+            <div class="flex flex-row">
+              <div class="w-1/8 p-4 text-sm">
+                <!-- Content for the left column -->
+                <div class="mb-4">Background:</div>
+                <div class="mb-4">Head:</div>
+                <div class="mb-4">Eyes:</div>
+                <div class="mb-4">Fur:</div>
+                <div class="mb-4">Shirt:</div>
+                <div class="mb-4">Pants:</div>
+                <div class="mb-4">Club:</div>
+              </div>
+              <div class="w-1/8 p-4 text-sm">
+                <!-- Content for the right column -->
+                <div class="mx-4 mb-4">{{nft_profile.background}}</div>
+                <div class="mx-4 mb-4">{{nft_profile.head}}</div>
+                <div class="mx-4 mb-4">{{nft_profile.eyes}}</div>
+                <div class="mx-4 mb-4">{{nft_profile.fur}}</div>
+                <div class="mx-4 mb-4">{{nft_profile.shirt}}</div>              
+                <div class="mx-4 mb-4">{{nft_profile.pants}}</div>
+                <div class="mx-4 mb-4">{{nft_profile.club}}</div>              
+              </div>
+            </div>
+          </div>
+          <!--Equipment Tab End -->
+
+          <!--Skill Tab Start-->
+          <input type="radio" name="my_tabs_2" role="tab" class="tab" aria-label="Skill" />
+          <div role="tabpanel" class="tab-content bg-transparent shadow-xl rounded-box p-2">
+            <div class="flex flex-row">
+              <div class="w-1/8 p-4 text-sm">
+                <!-- Content for the left column -->
+                <div class="mb-4">Power:</div>
+                <div class="mb-4">Accuracy:</div>
+                <div class="mb-4">Putting:</div>
+                <div class="mb-4">Luck:</div>
+                <div class="mb-4">Recovery:</div>
+                <div class="mb-4">Specialty</div>
+              </div>
+              <div class="w-1/8 p-4 text-sm">
+                <!-- Content for the right column -->
+                <div class="mb-4">{{nft_profile.power}}</div>
+                <div class="mb-4">{{nft_profile.accuracy}}</div>
+                <div class="mb-4">{{nft_profile.putting}}</div>
+                <div class="mb-4">{{nft_profile.luck}}</div>
+                <div class="mb-4">{{nft_profile.recovery}}</div>              
+                <div class="mb-4">{{nft_profile.specialty}}</div>
+              </div>
+            </div>
+          </div>
+          <!--Skill Tab End-->
+
+          <!--Recent Tournament Tab Start-->
+          <input type="radio" name="my_tabs_2" role="tab" class="tab" aria-label="Recent Tournament" />
+          <div role="tabpanel" class="tab-content bg-transparent shadow-xl rounded-box p-2">
+            <table class="table table-xs">
+              <thead>
+                <tr>
+                  <th></th> 
+                  <th>Date</th>
+                  <th>Opponent</th> 
+                  <th>Course</th> 
+                  <th>Format</th>
+                  <th>Score</th>                     
+                  <th>Result</th> 
+                  <th>Winnings</th> 
+                </tr>
+              </thead> 
+              <tbody>
+                <tr>
+                <th>1</th> 
+                <td>Jan-17-24</td> 
+                <td>#145</td> 
+                <td>Whiskers Woods</td> 
+                <td>Match Play</td>                   
+                <td>75 (+3)</td> 
+                <td>2 UP</td> 
+                <td>$SFS 100</td>
+                </tr>
+              </tbody> 
+            </table>          
+          </div>
+          <!--Recent Tournament Tab End-->
+
+          <!--Recent PvPs Tab Start-->
+          <input type="radio" name="my_tabs_2" role="tab" class="tab" aria-label="Recent PvPs" />
+          <div role="tabpanel" class="tab-content bg-transparent shadow-xl rounded-box p-2">
+            <table class="table table-xs">
+              <thead>
+                <tr>
+                  <th></th> 
+                  <th>Date</th>
+                  <th>Event</th> 
+                  <th>Course</th> 
+                  <th>Score</th> 
+                  <th>Placement</th> 
+                  <th>Winnings</th> 
+                </tr>
+              </thead> 
+              <tbody>
+                <tr>
+                <th>1</th> 
+                <td>Jan-15-24</td> 
+                <td>Chamster Founders Open</td> 
+                <td>Whiskers Woods</td> 
+                <td>73 (+1)</td> 
+                <td>13th</td> 
+                <td>$SFS 50</td>
+                </tr>
+              </tbody> 
+            </table>          
+          </div>       
+          <!--Recent PvPs Tab End--> 
+        </div> 
+      </section>
+      <div class="toast toast-end hidden" id="copyToast">
+        <div class="alert alert-info">
+          <span id="toast-message">Copied!</span>
+        </div>
+      </div>      
+    </div>
+  </div>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  const radar_data = {{ radar_data|safe }};
+  const radar_data2 = {{ avg_data|safe }}
+  
+  const radar_labels = [
+      "Power",
+      "Accuracy",
+      "Lucky",
+      "Recovery",
+      "Putting",
+  ];
+
+  const myChart = new Chart('myChart', {
+    type: 'radar',
+    data: {
+      labels: radar_labels,
+      datasets: [
+        {
+          label: "{{nft_profile.name}}",
+          data: radar_data,
+          fill: true,
+          backgroundColor: 'rgba(255, 99, 132, 0.2)',
+          borderColor: 'rgb(255, 99, 132)',
+          pointBorderColor: '#fff',
+          borderDash: [3, 5],
+          tension: 0.2,
+        },
+        {
+          label: "Average",
+          data: radar_data2,
+          backgroundColor: 'rgba(144, 238, 144, 0.2)',
+          borderColor: 'rgb(34, 139, 34)',
+          pointBorderColor: '#fff',
+          borderDash: [3, 5],
+          tension: 0.2,
+        },          
+      ]
+    },
+    options: {
+      elements: {
+        line: {
+          borderWidth: 2.5
+        }
+      },
+      scales: {
+        r: {
+          angleLines: {
+            display: false
+          },
+          suggestedMin: 0,
+          suggestedMax: 30
+        }
+      }
+    }
+  });
+
+  function copyAddress() {
+    const textToCopy = '{{ owner_address }}'; // Replace this with the text you want to copy
+    const textarea = document.createElement('textarea');
+    textarea.value = textToCopy;
+    document.body.appendChild(textarea);
+    textarea.select();
+    document.execCommand('copy');
+    document.body.removeChild(textarea);
+
+    // Change the toast message
+    const toastMessage = document.getElementById('toast-message');
+    toastMessage.textContent = 'Address Copied';
+
+    // Show the toast
+    const copyToast = document.getElementById('copyToast');
+    copyToast.classList.remove('hidden');
+    setTimeout(() => {
+      copyToast.classList.add('hidden'); // Hide the toast after 2 seconds
+    }, 2000);
+  
+    console.log('Text copied:', textToCopy);
+  }
+  
+  function copyNft() {
+    const textToCopy = '{{ nft_profile.encoded_id }}'; // Replace this with the text you want to copy
+    const textarea = document.createElement('textarea');
+    textarea.value = textToCopy;
+    document.body.appendChild(textarea);
+    textarea.select();
+    document.execCommand('copy');
+    document.body.removeChild(textarea);
+  
+    // Change the toast message
+    const toastMessage = document.getElementById('toast-message');
+    toastMessage.textContent = 'NFT ID Copied';
+
+    // Show the toast
+    const copyToast = document.getElementById('copyToast');
+    copyToast.classList.remove('hidden');
+    setTimeout(() => {
+      copyToast.classList.add('hidden'); // Hide the toast after 2 seconds
+    }, 2000);
+  
+    console.log('Text copied:', textToCopy);
+  }  
+  function copyOffert() {
+    const textToCopy = '{{ nft_profile.encoded_id }}'; // Replace this with the text you want to copy
+    const textarea = document.createElement('textarea');
+    textarea.value = textToCopy;
+    document.body.appendChild(textarea);
+    textarea.select();
+    document.execCommand('copy');
+    document.body.removeChild(textarea);
+  
+    // Change the toast message
+    const toastMessage = document.getElementById('toast-message');
+    toastMessage.textContent = 'Offer ID Copied';
+
+    // Show the toast
+    const copyToast = document.getElementById('copyToast');
+    copyToast.classList.remove('hidden');
+    setTimeout(() => {
+      copyToast.classList.add('hidden'); // Hide the toast after 2 seconds
+    }, 2000);
+  
+    console.log('Text copied:', textToCopy);
+  }    
+  
+
+</script>
+{% endblock body %}

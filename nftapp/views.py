@@ -1,6 +1,10 @@
+
 from django.shortcuts import render
 from django.core.paginator import Paginator, EmptyPage
 from .models import Chamster
+from django.db.models import Avg
+import requests
+import logging
 
 def nft_gallery(request):
     query_params = [
@@ -72,3 +76,99 @@ def nft_gallery(request):
     }
 
     return render(request, 'nftapp/nftgallery.html', main_data)
+
+
+def nft_profile(request, pk=None):
+    if pk:
+        try: 
+            nft_profile = Chamster.objects.get(pk=pk)
+            chamsters = Chamster.objects.all()
+    
+            mintgarden_api = f"https://api.mintgarden.io/nfts/{nft_profile.encoded_id}"
+            dexi_api = "https://api.dexie.space/v2/prices/tickers?ticker_id=USDSC_XCH"
+
+            mintgarden_response = requests.get(mintgarden_api)
+            dexi_response = requests.get(dexi_api)
+
+        
+            if mintgarden_response.status_code and dexi_response.status_code == 200:
+                mintgarden_api = mintgarden_response.json()
+                dexi_api = dexi_response.json()
+            
+                average_power = chamsters.aggregate(avg_power=Avg('power'))['avg_power']
+                average_accuracy = chamsters.aggregate(avg_accuracy=Avg('accuracy'))['avg_accuracy']
+                average_luck = chamsters.aggregate(avg_luck=Avg('luck'))['avg_luck']
+                average_recovery = chamsters.aggregate(avg_recovery=Avg('recovery'))['avg_recovery']
+                average_putting = chamsters.aggregate(avg_putting=Avg('putting'))['avg_putting']
+
+                collection_name = mintgarden_api["data"]["metadata_json"]["collection"]["name"]
+                owner_address = mintgarden_api["owner_address"]["id"]
+                
+                # DID Profile of owner 
+                if mintgarden_api["owner"] is not None and mintgarden_api["owner"]["encoded_id"] is not None:
+                    owner_did = mintgarden_api["owner"]["encoded_id"]
+                else:
+                    owner_did = "DID not available"
+
+                # XCH price
+                xch_price = mintgarden_api.get("xch_price")
+                if xch_price is None:
+                    xch_price = None                    
+                    usdsc_price = None
+                else:
+                    # USDSC price                   
+                    usdsc_xch_price = dexi_api["tickers"][0]["last_price"]
+                    if usdsc_xch_price:
+                        usdsc_price = 1 / float(usdsc_xch_price)
+                    else:
+                        usdsc_price = "N/A"  # Or any value/error handling that fits your application logic
+
+                # Chamster type
+                if "Legendary" in nft_profile.name:
+                    chamster_type = "Legendary"
+                else:
+                    chamster_type = "Normal"
+
+                profile_data = {
+                    "nft_profile": nft_profile,
+                    "collection_name": collection_name,
+                    "owner_address": owner_address,
+                    "chamster_type": chamster_type,
+                    "xch_price": xch_price,
+                    "usdsc_price": usdsc_price,
+                    "owner_did": owner_did,
+                    "avg_data": [
+                        average_power,
+                        average_accuracy,
+                        average_luck,
+                        average_recovery,
+                        average_putting,
+                    ],
+                    "radar_data": [
+                        nft_profile.power, 
+                        nft_profile.accuracy, 
+                        nft_profile.luck, 
+                        nft_profile.recovery, 
+                        nft_profile.putting
+                    ],
+                }
+                return render(request, "nftapp/nftprofile.html", profile_data)
+            else:
+                error_message = {
+                    "mintgarden_api": f"Failed to fetch data from Mintgarden API: {mintgarden_response.status_code}",
+                    "dexi_api": f"Failed to fetch data from Dexi API: {dexi_response.status_code}",
+                }
+                logging.error(error_message)
+                return render(request, "nftapp/nftprofile.html", {"error_message": error_message})
+        except Chamster.DoesNotExist:
+            nft_profile = "Error: NFT not found"
+            return render(request, "nftapp/nftprofile.html", {"nft_profile": nft_profile})
+        except Exception as e:
+            error_message = f"An error occurred: {str(e)}"
+            logging.error(error_message)
+            return render(request, "nftapp/nftprofile.html", {"error_message": error_message})
+    else:
+        nft_profile = "Error: No ID provided"
+        return render(request, "nftapp/nftprofile.html", {"nft_profile": nft_profile})            
+
+

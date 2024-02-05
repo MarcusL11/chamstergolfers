@@ -1091,7 +1091,7 @@
                 <!-- Grid Section - Starts Here -->
                 <section id="Projects" class="justify-items-center justify-center mt-4">
                   <div class="shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
-                    <a href="">
+                    <a href="{% url 'nft_profile' pk=item.id %}">
                       <img src="{% static 'images/nft/golfers/'|add:item.encoded_id|add:'.png' %}" alt="{{item.name}}" class="object-cover rounded-t-xl" />
                       <div class="px-4 py-2">
                         {% if "Chamster Legendary Golfer #" in item.name %}
